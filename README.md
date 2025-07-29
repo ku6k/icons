@@ -124,3 +124,105 @@ Your app should now be running on [localhost:3000](http://localhost:3000).
 `@/lib` contains all business logic & utils
 
 `@/v0` contains all v0 collateral used in `registry.json`
+
+
+عالی محسن! این اطلاعات دقیق و ساختارمند، نقطه‌ی پایان محکمی برای انتشار نسخه‌ی اول آیکونوگرافی «کوشک»ه. حالا بیاین همه رو بریزیم داخل یه ساختار رسمی که هم برای فایل README.md پروژه GitHub قابل استفاده باشه، هم برای SEO و سند رسمی انتشار.
+
+⸻
+
+📦 KU6K Iconography v1.0.0 – Essential UI Set
+
+👁️ Overview
+
+نسخه‌ی اول آیکونوگرافی رسمی برند کوشک، شامل ۶ آیکون پایه برای کاربردهای اصلی در طراحی UI، به همراه ۱۶ واریاسیون گرافیکی در سبک‌های متنوع (Mono, Duotone, Color, Brutal, Line, Silhouette) عرضه می‌شود.
+این مجموعه در ساختار ماژولار و با استانداردهای برند «KU6K» ساخته شده و قابل استفاده در اپلیکیشن، وب‌سایت، موشن‌گرافی و مستندات دیجیتال است.
+
+⸻
+
+🧩 Essential UI Icons
+
+No.	Icon Name	Description
+1	Home	آیکون خانه (صفحه اصلی)
+2	Arrow-Right	پیکان به سمت راست (ناوبری)
+3	Search	جستجو
+4	User	کاربر یا حساب کاربری
+5	Outlog	خروج یا خروج از حساب
+6	Setting	تنظیمات یا پیکربندی
+
+
+⸻
+
+🎨 Variations for ku6k-home
+
+تمامی آیکون‌ها در همین سبک‌ها طراحی شده‌اند و تنها به‌عنوان نمونه، اینجا واریاسیون آیکون Home آورده شده است.
+
+No.	Variation Name	Style
+1	ku6k-home--mono-b-v1.0.0	Mono - Black
+2	ku6k-home--mono-w-v1.0.0	Mono - White
+3	ku6k-home--duotone-p+s-v1.0.0	Duotone - Primary + Secondary
+4	ku6k-home--duotone-p+s-dark-v1.0.0	Duotone - Dark Mode
+5	ku6k-home--color-p+s+a-v1.0.0	Full Color
+6	ku6k-home--color-p+s+a-dark-v1.0.0	Full Color - Dark
+7	ku6k-home--brutal-p+s+a-v1.0.0	Brutalist
+8	ku6k-home--brutal-p+s+a-v1.0.0	Brutalist (Alt)
+9	ku6k-home--line-v1.0.0	Line Art
+10	ku6k-home--line-dark-v1.0.0	Line - Dark
+11	ku6k-home--silhouette-w-on-bg-p-v1.0.0	White on Primary
+12	ku6k-home--silhouette-b-on-bg-p-v1.0.0	Black on Primary
+13	ku6k-home--silhouette-w-on-bg-s-v1.0.0	White on Secondary
+14	ku6k-home--silhouette-b-on-bg-s-v1.0.0	Black on Secondary
+15	ku6k-home--silhouette-w-on-bg-a-v1.0.0	White on Accent
+16	ku6k-home--silhouette-b-on-bg-a-v1.0.0	Black on Accent
+
+
+⸻
+
+🧱 Color System Abbreviations
+
+Abbr	Meaning
+W	White
+B	Black
+P	Primary Color
+S	Secondary Color
+A	Accent Color
+BG	Background
+
+
+⸻
+
+📨 Publishing Notes
+	•	Publisher Email: iconography@kou6k.com (Must be linked to official KU6K domain for SEO + credibility)
+	•	Publisher Name: KU6K (Koushk Brand)
+	•	Organization: https://kou6k.com
+	•	Version: v1.0.0
+	•	Release Date: [تاریخ انتشار میل‌استون]
+	•	License: [Your license info - MIT? Custom?]
+
+⸻
+
+🔍 SEO & Metadata (For Google Indexing)
+	•	Use schema.org/CreativeWork or Product structured data
+	•	Include:
+
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "KU6K Iconography - Essential UI v1.0.0",
+  "creator": {
+    "@type": "Organization",
+    "name": "KU6K",
+    "url": "https://kou6k.com",
+    "email": "iconography@kou6k.com"
+  },
+  "datePublished": "2025-07-xx",
+  "keywords": "iconography, ku6k, brutalism ui, essential icons, duotone icons",
+  "description": "A modular and branded set of icons from KU6K visual identity system."
+}
+
+
+
+⸻
+
+اگر بخوای، می‌تونم کل این محتوا رو به‌صورت یه فایل README.md آماده کنم تا مستقیم بندازی توی ریپازیتوری ku6k_iconography.
+
+بفرما بگو بریم اونم آماده کنیم؟ 🎯
