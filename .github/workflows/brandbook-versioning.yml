@@ -1,0 +1,234 @@
+name: KU6K Brandbook Versioning
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'brandbook/modules/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'brandbook/modules/**'
+  workflow_dispatch:
+    inputs:
+      module:
+        description: 'Module to version'
+        required: true
+        type: choice
+        options:
+          - color-tokens
+          - color-tokens-dark
+          - typography
+          - iconography
+          - logos-wordmarks
+          - brand-voice
+          - design-guidelines
+      version_type:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      changed-modules: ${{ steps.changes.outputs.modules }}
+      any-changes: ${{ steps.changes.outputs.any }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect module changes
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "modules=${{ github.event.inputs.module }}" >> $GITHUB_OUTPUT
+            echo "any=true" >> $GITHUB_OUTPUT
+          else
+            CHANGED_MODULES=$(git diff --name-only HEAD~1..HEAD | grep "^brandbook/modules/" | cut -d'/' -f3 | sort -u | tr '\n' ' ')
+            echo "modules=${CHANGED_MODULES}" >> $GITHUB_OUTPUT
+            if [ -n "$CHANGED_MODULES" ]; then
+              echo "any=true" >> $GITHUB_OUTPUT
+            else
+              echo "any=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+  version-modules:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        module: ${{ fromJson(needs.detect-changes.outputs.changed-modules) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: |
+          cd brandbook
+          pnpm install
+
+      - name: Determine version type
+        id: version-type
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "type=${{ github.event.inputs.version_type }}" >> $GITHUB_OUTPUT
+          else
+            # Analyze commit messages to determine version type
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            if echo "$COMMIT_MSG" | grep -q "BREAKING CHANGE"; then
+              echo "type=major" >> $GITHUB_OUTPUT
+            elif echo "$COMMIT_MSG" | grep -q "^feat"; then
+              echo "type=minor" >> $GITHUB_OUTPUT
+            else
+              echo "type=patch" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Get current version
+        id: current-version
+        run: |
+          cd brandbook/modules/${{ matrix.module }}
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "version=${CURRENT_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        id: new-version
+        run: |
+          cd brandbook/modules/${{ matrix.module }}
+          NEW_VERSION=$(npm version ${{ steps.version-type.outputs.type }} --no-git-tag-version)
+          echo "version=${NEW_VERSION#v}" >> $GITHUB_OUTPUT
+
+      - name: Update changelog
+        run: |
+          cd brandbook/modules/${{ matrix.module }}
+          # Create/update CHANGELOG.md
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog - ${{ matrix.module }}" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "All notable changes to this module will be documented in this file." >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+          
+          # Add new version entry
+          DATE=$(date +%Y-%m-%d)
+          sed -i "3i\\## [${{ steps.new-version.outputs.version }}] - $DATE\\n\\n### Changed\\n- Updated from version ${{ steps.current-version.outputs.version }}\\n" CHANGELOG.md
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add brandbook/modules/${{ matrix.module }}/package.json
+          git add brandbook/modules/${{ matrix.module }}/CHANGELOG.md
+          git commit -m "feat(${{ matrix.module }}): bump version to ${{ steps.new-version.outputs.version }}"
+
+      - name: Create module tag
+        run: |
+          git tag ${{ matrix.module }}-v${{ steps.new-version.outputs.version }}
+
+      - name: Push changes
+        run: |
+          git push origin main
+          git push origin ${{ matrix.module }}-v${{ steps.new-version.outputs.version }}
+
+  assess-global-impact:
+    needs: [detect-changes, version-modules]
+    if: needs.detect-changes.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Assess global brandbook impact
+        id: global-impact
+        run: |
+          # Simple logic for global version impact
+          CHANGED_MODULES="${{ needs.detect-changes.outputs.changed-modules }}"
+          MODULE_COUNT=$(echo $CHANGED_MODULES | wc -w)
+          
+          if [ $MODULE_COUNT -gt 2 ]; then
+            echo "impact=minor" >> $GITHUB_OUTPUT
+          elif [ $MODULE_COUNT -eq 1 ]; then
+            echo "impact=patch" >> $GITHUB_OUTPUT
+          else
+            echo "impact=none" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump global brandbook version
+        if: steps.global-impact.outputs.impact != 'none'
+        run: |
+          cd brandbook
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          NEW_VERSION=$(npm version ${{ steps.global-impact.outputs.impact }} --no-git-tag-version)
+          
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add package.json
+          git commit -m "feat(brandbook): bump global version to ${NEW_VERSION#v}"
+          
+          git tag brandbook-${NEW_VERSION}
+          git push origin main
+          git push origin brandbook-${NEW_VERSION}
+
+  create-release:
+    needs: [detect-changes, version-modules, assess-global-impact]
+    if: needs.detect-changes.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: brandbook-v${{ needs.assess-global-impact.outputs.version }}
+          release_name: KU6K Brandbook v${{ needs.assess-global-impact.outputs.version }}
+          body: |
+            ## Module Updates
+            
+            ${{ needs.detect-changes.outputs.changed-modules }}
+            
+            ## Changes
+            
+            - Updated module versions with semantic versioning
+            - Generated automated changelogs
+            - Maintained backward compatibility where possible
+            
+            ## Migration
+            
+            See individual module changelogs for detailed migration instructions.
+          draft: false
+          prerelease: false

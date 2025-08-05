@@ -1,0 +1,24 @@
+{
+  "name": "@ku6k/brand-voice",
+  "version": "1.0.0",
+  "description": "KU6K Brand Voice & Messaging - Tone and communication guidelines",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "guidelines", "CHANGELOG.md"],
+  "keywords": [
+    "brand-voice",
+    "messaging",
+    "tone",
+    "communication",
+    "ku6k",
+    "brandbook"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting specified'"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

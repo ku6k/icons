@@ -1,0 +1,21 @@
+{
+  "name": "@ku6k/iconography",
+  "version": "1.0.0",
+  "description": "KU6K Iconography System - Icon sets and guidelines",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "icons", "CHANGELOG.md"],
+  "keywords": ["icons", "iconography", "svg", "ku6k", "brandbook"],
+  "scripts": {
+    "build": "node build.js",
+    "optimize": "svgo icons/**/*.svg",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting specified'"
+  },
+  "devDependencies": {
+    "svgo": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

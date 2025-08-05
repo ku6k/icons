@@ -1,0 +1,24 @@
+{
+  "name": "@ku6k/typography",
+  "version": "1.0.0",
+  "description": "KU6K Typography System - Fonts, headings, and spacing",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "tokens", "fonts", "CHANGELOG.md"],
+  "keywords": [
+    "typography",
+    "fonts",
+    "headings",
+    "spacing",
+    "ku6k",
+    "brandbook"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting specified'"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

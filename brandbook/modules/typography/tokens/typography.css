@@ -1,0 +1,154 @@
+/**
+ * KU6K Typography System v1.0.0
+ * Font families, scales, and spacing
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Font Families */
+  --ku6k-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --ku6k-font-mono: "SF Mono", Monaco, Inconsolata, "Roboto Mono", monospace;
+  --ku6k-font-display: var(--ku6k-font-sans);
+
+  /* Font Weights */
+  --ku6k-font-weight-light: 300;
+  --ku6k-font-weight-normal: 400;
+  --ku6k-font-weight-medium: 500;
+  --ku6k-font-weight-semibold: 600;
+  --ku6k-font-weight-bold: 700;
+
+  /* Font Sizes - Modular Scale (1.25) */
+  --ku6k-font-size-xs: 0.75rem; /* 12px */
+  --ku6k-font-size-sm: 0.875rem; /* 14px */
+  --ku6k-font-size-base: 1rem; /* 16px */
+  --ku6k-font-size-lg: 1.125rem; /* 18px */
+  --ku6k-font-size-xl: 1.25rem; /* 20px */
+  --ku6k-font-size-2xl: 1.5rem; /* 24px */
+  --ku6k-font-size-3xl: 1.875rem; /* 30px */
+  --ku6k-font-size-4xl: 2.25rem; /* 36px */
+  --ku6k-font-size-5xl: 3rem; /* 48px */
+  --ku6k-font-size-6xl: 3.75rem; /* 60px */
+
+  /* Line Heights */
+  --ku6k-line-height-none: 1;
+  --ku6k-line-height-tight: 1.25;
+  --ku6k-line-height-snug: 1.375;
+  --ku6k-line-height-normal: 1.5;
+  --ku6k-line-height-relaxed: 1.625;
+  --ku6k-line-height-loose: 2;
+
+  /* Letter Spacing */
+  --ku6k-letter-spacing-tighter: -0.05em;
+  --ku6k-letter-spacing-tight: -0.025em;
+  --ku6k-letter-spacing-normal: 0;
+  --ku6k-letter-spacing-wide: 0.025em;
+  --ku6k-letter-spacing-wider: 0.05em;
+  --ku6k-letter-spacing-widest: 0.1em;
+
+  /* Spacing Scale */
+  --ku6k-space-0: 0;
+  --ku6k-space-1: 0.25rem; /* 4px */
+  --ku6k-space-2: 0.5rem; /* 8px */
+  --ku6k-space-3: 0.75rem; /* 12px */
+  --ku6k-space-4: 1rem; /* 16px */
+  --ku6k-space-5: 1.25rem; /* 20px */
+  --ku6k-space-6: 1.5rem; /* 24px */
+  --ku6k-space-8: 2rem; /* 32px */
+  --ku6k-space-10: 2.5rem; /* 40px */
+  --ku6k-space-12: 3rem; /* 48px */
+  --ku6k-space-16: 4rem; /* 64px */
+  --ku6k-space-20: 5rem; /* 80px */
+  --ku6k-space-24: 6rem; /* 96px */
+  --ku6k-space-32: 8rem; /* 128px */
+}
+
+/* Typography Presets */
+.ku6k-heading-1 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-6xl);
+  font-weight: var(--ku6k-font-weight-bold);
+  line-height: var(--ku6k-line-height-tight);
+  letter-spacing: var(--ku6k-letter-spacing-tighter);
+}
+
+.ku6k-heading-2 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-5xl);
+  font-weight: var(--ku6k-font-weight-bold);
+  line-height: var(--ku6k-line-height-tight);
+  letter-spacing: var(--ku6k-letter-spacing-tighter);
+}
+
+.ku6k-heading-3 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-4xl);
+  font-weight: var(--ku6k-font-weight-semibold);
+  line-height: var(--ku6k-line-height-snug);
+  letter-spacing: var(--ku6k-letter-spacing-tight);
+}
+
+.ku6k-heading-4 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-3xl);
+  font-weight: var(--ku6k-font-weight-semibold);
+  line-height: var(--ku6k-line-height-snug);
+  letter-spacing: var(--ku6k-letter-spacing-tight);
+}
+
+.ku6k-heading-5 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-2xl);
+  font-weight: var(--ku6k-font-weight-medium);
+  line-height: var(--ku6k-line-height-normal);
+  letter-spacing: var(--ku6k-letter-spacing-normal);
+}
+
+.ku6k-heading-6 {
+  font-family: var(--ku6k-font-display);
+  font-size: var(--ku6k-font-size-xl);
+  font-weight: var(--ku6k-font-weight-medium);
+  line-height: var(--ku6k-line-height-normal);
+  letter-spacing: var(--ku6k-letter-spacing-normal);
+}
+
+.ku6k-body-large {
+  font-family: var(--ku6k-font-sans);
+  font-size: var(--ku6k-font-size-lg);
+  font-weight: var(--ku6k-font-weight-normal);
+  line-height: var(--ku6k-line-height-relaxed);
+  letter-spacing: var(--ku6k-letter-spacing-normal);
+}
+
+.ku6k-body {
+  font-family: var(--ku6k-font-sans);
+  font-size: var(--ku6k-font-size-base);
+  font-weight: var(--ku6k-font-weight-normal);
+  line-height: var(--ku6k-line-height-normal);
+  letter-spacing: var(--ku6k-letter-spacing-normal);
+}
+
+.ku6k-body-small {
+  font-family: var(--ku6k-font-sans);
+  font-size: var(--ku6k-font-size-sm);
+  font-weight: var(--ku6k-font-weight-normal);
+  line-height: var(--ku6k-line-height-normal);
+  letter-spacing: var(--ku6k-letter-spacing-normal);
+}
+
+.ku6k-caption {
+  font-family: var(--ku6k-font-sans);
+  font-size: var(--ku6k-font-size-xs);
+  font-weight: var(--ku6k-font-weight-medium);
+  line-height: var(--ku6k-line-height-tight);
+  letter-spacing: var(--ku6k-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.ku6k-code {
+  font-family: var(--ku6k-font-mono);
+  font-size: var(--ku6k-font-size-sm);
+  font-weight: var(--ku6k-font-weight-normal);
+  line-height: var(--ku6k-line-height-normal);
+}

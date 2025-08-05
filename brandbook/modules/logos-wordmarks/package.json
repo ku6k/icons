@@ -1,0 +1,18 @@
+{
+  "name": "@ku6k/logos-wordmarks",
+  "version": "1.0.0",
+  "description": "KU6K Logos and Wordmarks - Brand identity assets",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "assets", "CHANGELOG.md"],
+  "keywords": ["logo", "wordmarks", "brand", "identity", "ku6k", "brandbook"],
+  "scripts": {
+    "build": "node build.js",
+    "optimize": "svgo assets/**/*.svg",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting specified'"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

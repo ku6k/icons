@@ -1,0 +1,31 @@
+{
+  "name": "@ku6k/brandbook",
+  "version": "1.0.0",
+  "description": "KU6K Modular Design System Brandbook",
+  "private": false,
+  "keywords": ["design-system", "brandbook", "ku6k", "tokens", "modular"],
+  "homepage": "https://registry-starter.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/ku6k-brandbook.git"
+  },
+  "license": "MIT",
+  "workspaces": ["modules/*"],
+  "scripts": {
+    "version:check": "node scripts/version-check.js",
+    "version:bump": "node scripts/version-bump.js",
+    "build": "pnpm --recursive run build",
+    "test": "pnpm --recursive run test",
+    "lint": "pnpm --recursive run lint"
+  },
+  "devDependencies": {
+    "semver": "^7.5.4",
+    "conventional-changelog": "^4.0.0",
+    "conventional-recommended-bump": "^7.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.15.2"
+}
