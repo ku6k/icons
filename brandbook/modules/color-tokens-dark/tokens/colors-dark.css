@@ -1,0 +1,83 @@
+/**
+ * KU6K Dark Mode Color Tokens v2.0.0
+ * Dark theme color system - Future implementation
+ */
+
+.dark {
+  /* Primary Colors - Enhanced for dark mode */
+  --ku6k-primary: oklch(0.58 0.15 144.17);
+  --ku6k-primary-foreground: oklch(0.09 0.01 80.72);
+  --ku6k-primary-50: oklch(0.15 0.02 144.17);
+  --ku6k-primary-100: oklch(0.2 0.03 144.17);
+  --ku6k-primary-200: oklch(0.28 0.06 144.17);
+  --ku6k-primary-300: oklch(0.38 0.09 144.17);
+  --ku6k-primary-400: oklch(0.48 0.12 144.17);
+  --ku6k-primary-500: oklch(0.58 0.15 144.17);
+  --ku6k-primary-600: oklch(0.65 0.16 144.17);
+  --ku6k-primary-700: oklch(0.72 0.16 144.17);
+  --ku6k-primary-800: oklch(0.78 0.15 144.17);
+  --ku6k-primary-900: oklch(0.85 0.12 144.17);
+
+  /* Secondary Colors */
+  --ku6k-secondary: oklch(0.15 0.02 147.64);
+  --ku6k-secondary-foreground: oklch(0.65 0.12 144.31);
+
+  /* Accent Colors */
+  --ku6k-accent: oklch(0.22 0.04 146.04);
+  --ku6k-accent-foreground: oklch(0.65 0.12 144.31);
+
+  /* Background Colors */
+  --ku6k-background: oklch(0.15 0.01 74.42);
+  --ku6k-foreground: oklch(0.95 0.02 80.72);
+
+  /* Surface Colors */
+  --ku6k-card: oklch(0.12 0.01 80.72);
+  --ku6k-card-foreground: oklch(0.95 0.02 80.72);
+  --ku6k-popover: oklch(0.12 0.01 80.72);
+  --ku6k-popover-foreground: oklch(0.95 0.02 80.72);
+
+  /* Muted Colors */
+  --ku6k-muted: oklch(0.18 0.01 74.42);
+  --ku6k-muted-foreground: oklch(0.65 0.03 74.42);
+
+  /* Border Colors */
+  --ku6k-border: oklch(0.22 0.02 74.64);
+  --ku6k-input: oklch(0.22 0.02 74.64);
+  --ku6k-ring: oklch(0.58 0.15 144.17);
+
+  /* Semantic Colors - Dark mode variants */
+  --ku6k-destructive: oklch(0.62 0.22 26.72);
+  --ku6k-destructive-foreground: oklch(0.95 0.02 80.72);
+  --ku6k-success: oklch(0.6 0.18 142.2);
+  --ku6k-success-foreground: oklch(0.15 0.01 142.2);
+  --ku6k-warning: oklch(0.8 0.18 85.2);
+  --ku6k-warning-foreground: oklch(0.15 0.01 85.2);
+
+  /* Chart Colors - Dark mode enhanced */
+  --ku6k-chart-1: oklch(0.72 0.16 144.21);
+  --ku6k-chart-2: oklch(0.63 0.14 144.18);
+  --ku6k-chart-3: oklch(0.58 0.15 144.17);
+  --ku6k-chart-4: oklch(0.48 0.12 144.31);
+  --ku6k-chart-5: oklch(0.35 0.08 145.73);
+
+  /* Compatibility aliases */
+  --primary: var(--ku6k-primary);
+  --primary-foreground: var(--ku6k-primary-foreground);
+  --secondary: var(--ku6k-secondary);
+  --secondary-foreground: var(--ku6k-secondary-foreground);
+  --accent: var(--ku6k-accent);
+  --accent-foreground: var(--ku6k-accent-foreground);
+  --background: var(--ku6k-background);
+  --foreground: var(--ku6k-foreground);
+  --card: var(--ku6k-card);
+  --card-foreground: var(--ku6k-card-foreground);
+  --popover: var(--ku6k-popover);
+  --popover-foreground: var(--ku6k-popover-foreground);
+  --muted: var(--ku6k-muted);
+  --muted-foreground: var(--ku6k-muted-foreground);
+  --border: var(--ku6k-border);
+  --input: var(--ku6k-input);
+  --ring: var(--ku6k-ring);
+  --destructive: var(--ku6k-destructive);
+  --destructive-foreground: var(--ku6k-destructive-foreground);
+}

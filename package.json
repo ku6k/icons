@@ -1,6 +1,6 @@
 {
-  "name": "registry-starter",
-  "version": "0.0.1",
+  "name": "ku6k-design-system",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "npm run registry:build && next dev --turbopack",
@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "registry:build": "npx shadcn@latest build"
+    "registry:build": "npx shadcn@latest build",
+    "brandbook:version-check": "node brandbook/scripts/version-check.js",
+    "brandbook:version-bump": "node brandbook/scripts/version-bump.js",
+    "brandbook:build": "cd brandbook && pnpm build",
+    "brandbook:install": "cd brandbook && pnpm install"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

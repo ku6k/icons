@@ -1,0 +1,23 @@
+{
+  "name": "@ku6k/design-guidelines",
+  "version": "1.0.0",
+  "description": "KU6K Design Guidelines - Usage documentation and best practices",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "docs", "CHANGELOG.md"],
+  "keywords": [
+    "design-guidelines",
+    "documentation",
+    "best-practices",
+    "ku6k",
+    "brandbook"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting specified'"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
